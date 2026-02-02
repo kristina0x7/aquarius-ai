@@ -5,18 +5,45 @@ spring:
 server:
   port: 8080
 
+  servlet:
+    context-path: /
+  compression:
+    enabled: true
+    mime-types: text/html,text/css,text/javascript,application/json,application/javascript
+
+spring:
+  websocket:
+    allowed-origins: "*"
+
+ai:
+  openai:
+    api-key: ${OPENAI_API_KEY:your-openai-api-key-here}
+    model: gpt-4o-mini
+    max-tokens: 2000
+    temperature: 0.7
+
+logging:
+  level:
+    com.aquarius: DEBUG
+    org.springframework.web.socket: INFO
+    org.springframework.web.socket.handler: INFO
+  file:
+    name: logs/aquarius-ai.log
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+
 management:
   endpoints:
     web:
       exposure:
-        include: health,info
+        include: health,info,metrics
   endpoint:
     health:
       show-details: always
+      probes:
+        enabled: true
 
-ai:
-  openai:
-    api-key: ${OPENAI_API_KEY}
-    model: gpt-4o-mini
-    max-tokens: 2000
-    temperature: 0.7
+okhttp:
+  connect-timeout: 30s
+  read-timeout: 30s
+  write-timeout: 30s

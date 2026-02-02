@@ -1,0 +1,167 @@
+### API Keys och Secrets ###
+.env
+.env.local
+.env.*.local
+*.env
+secrets/
+config/application-local.yml
+config/application-dev.yml
+**/application-*.yml
+!application.yml
+
+### Maven ###
+target/
+!.mvn/wrapper/maven-wrapper.jar
+.mvn/wrapper/maven-wrapper.properties
+**/mvnw
+**/mvnw.cmd
+**/.mvn
+**/target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+
+### IntelliJ IDEA ###
+.idea/
+*.iws
+*.iml
+*.ipr
+out/
+.idea_modules/
+*.ipr
+*.iws
+atlassian-ide-plugin.xml
+compiler.xml
+jarRepositories.xml
+*.eml
+*.log
+
+### Eclipse ###
+.settings/
+.classpath
+.project
+.factorypath
+.springBeans
+.sts4-cache/
+bin/
+!.mvn/wrapper/maven-wrapper.jar
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+/build/
+
+### VS Code ###
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
+
+### OS ###
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+*.swp
+*.swo
+*~
+
+### Logs ###
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+### Temp files ###
+*.tmp
+*.temp
+*.bak
+*.backup
+
+### Database ###
+*.db
+*.sqlite
+*.h2.db
+
+### Spring Boot ###
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### Test reports ###
+**/test-output/
+**/reports/
+**/test-results/
+
+### Git ###
+*.orig
+
+### Docker ###
+docker-compose.override.yml
+
+### Node.js ###
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+### Python ###
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+### Aquarius AI specific ###
+robot_story.txt
+payload.json
+test_*.json
+*.test.json
+demo_*.sh
+complete_test.sh
+fun_tests.sh
+quick_performance.sh
+final_verification.sh
+test_aquarius.sh
+test_english.sh
+aquarius_test_all.sh
+kill8080.sh
+restart.sh
+test.sh
+test_temp.json
+long_test.json
+
+### Application logs and temp files ###
+*.cache
+*.pid
+*.seed
+*.pid.lock

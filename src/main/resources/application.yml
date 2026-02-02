@@ -2,36 +2,39 @@ spring:
   application:
     name: aquarius-ai
 
+  # WebSocket configuration
+  websocket:
+    allowed-origins: "*"
+
 server:
   port: 8080
 
+  # HTTP settings
   servlet:
     context-path: /
   compression:
     enabled: true
     mime-types: text/html,text/css,text/javascript,application/json,application/javascript
 
-spring:
-  websocket:
-    allowed-origins: "*"
-
+# AI Configuration
 ai:
   openai:
-    api-key: ${OPENAI_API_KEY:your-openai-api-key-here}
+    api-key: ${OPENAI_API_KEY:sk-demo-key-just-for-testing}
     model: gpt-4o-mini
     max-tokens: 2000
     temperature: 0.7
 
+# Logging
 logging:
   level:
     com.aquarius: DEBUG
     org.springframework.web.socket: INFO
-    org.springframework.web.socket.handler: INFO
   file:
     name: logs/aquarius-ai.log
   pattern:
     console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
 
+# Actuator for monitoring
 management:
   endpoints:
     web:
@@ -40,9 +43,8 @@ management:
   endpoint:
     health:
       show-details: always
-      probes:
-        enabled: true
 
+# HTTP client timeouts (not Spring Boot standard, but you can use it)
 okhttp:
   connect-timeout: 30s
   read-timeout: 30s

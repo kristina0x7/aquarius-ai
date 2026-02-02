@@ -18,12 +18,12 @@ public class ChatWebSocketHandler extends TextWebSocketHandler {
 
     @Override
     public void afterConnectionEstablished(WebSocketSession session) throws Exception {
-        System.out.println("New WebSocket connection: " + session.getId());
+        System.out.println("✅ New WebSocket connection: " + session.getId());
 
         session.sendMessage(new TextMessage(
                 mapper.writeValueAsString(Map.of(
                         "type", "system",
-                        "message", "Connected to Aquarius AI! Ask me anything.",
+                        "message", "Connected to Aquarius AI",
                         "timestamp", System.currentTimeMillis()
                 ))
         ));
@@ -31,8 +31,7 @@ public class ChatWebSocketHandler extends TextWebSocketHandler {
 
     @Override
     protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
-        String payload = message.getPayload();
-        Map<String, String> data = mapper.readValue(payload, Map.class);
+        Map<String, String> data = mapper.readValue(message.getPayload(), Map.class);
         String userMessage = data.get("message");
 
         if (userMessage == null || userMessage.trim().isEmpty()) {
@@ -44,8 +43,6 @@ public class ChatWebSocketHandler extends TextWebSocketHandler {
             ));
             return;
         }
-
-        System.out.println("📨 Received message: " + userMessage);
 
         session.sendMessage(new TextMessage(
                 mapper.writeValueAsString(Map.of(
@@ -65,8 +62,6 @@ public class ChatWebSocketHandler extends TextWebSocketHandler {
         try {
             String aiResponse = openAIService.sendMessage(userMessage);
 
-            System.out.println("AI Response: " + aiResponse.substring(0, Math.min(100, aiResponse.length())) + "...");
-
             session.sendMessage(new TextMessage(
                     mapper.writeValueAsString(Map.of(
                             "type", "assistant",
@@ -74,13 +69,12 @@ public class ChatWebSocketHandler extends TextWebSocketHandler {
                             "timestamp", System.currentTimeMillis()
                     ))
             ));
-
         } catch (Exception e) {
-            System.err.println("Error getting AI response: " + e.getMessage());
+            System.err.println("❌ Error: " + e.getMessage());
             session.sendMessage(new TextMessage(
                     mapper.writeValueAsString(Map.of(
                             "type", "error",
-                            "message", "Sorry, I encountered an error: " + e.getMessage()
+                            "message", "Error: " + e.getMessage()
                     ))
             ));
         } finally {
@@ -91,15 +85,5 @@ public class ChatWebSocketHandler extends TextWebSocketHandler {
                     ))
             ));
         }
-    }
-
-    @Override
-    public void handleTransportError(WebSocketSession session, Throwable exception) throws Exception {
-        System.err.println("WebSocket error: " + exception.getMessage());
-    }
-
-    @Override
-    public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
-        System.out.println("WebSocket disconnected: " + session.getId());
     }
 }

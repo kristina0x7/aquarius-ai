@@ -2,12 +2,11 @@
 
 ### Spring Boot + OpenAI Integration
 
-A fully functional AI chatbot API built with Spring Boot that integrates with OpenAI's GPT API. Currently a REST API with plans to evolve into an interactive chat interface.
+A fully functional AI chatbot API built with Spring Boot that integrates with OpenAI's GPT API.
 
 ## Features
-- AI-Powered Chat with OpenAI GPT-4o-mini(Currrently)
+- AI-Powered Chat with OpenAI GPT-4o-mini(Currently)
 - Multi-language Support
-- REST API with clean endpoints
 - Spring Boot 3.2.7 with auto-configuration
 - Secure API key management via environment variables
 
@@ -28,4 +27,3 @@ A fully functional AI chatbot API built with Spring Boot that integrates with Op
 - OkHttp for HTTP requests
 - Jackson for JSON processing
 - Maven for dependency management
-EOF
